@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { QuestionsComponent } from './components/questions/questions.component';
 import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
@@ -10,8 +9,12 @@ const routes: Routes = [
     path: 'welcome',
     component: WelcomeComponent,
   },
-  { path: 'questions', component: QuestionsComponent },
   { path: 'results', component: ResultsComponent },
+  {
+    path: 'questions',
+    loadChildren: () =>
+      import('./questions/questions.module').then((m) => m.QuestionsModule),
+  },
   { path: '**', redirectTo: '/welcome' },
 ];
 

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { QuestionsService } from '../../services/questions/questions.service';
-import { Question } from '../../interfaces/IQuestion';
 import { TimerService } from 'src/app/services/timer/timer.service';
 import { Router } from '@angular/router';
 import { AnswersService } from 'src/app/services/answers/answers.service';
 import { Subscription } from 'rxjs';
 import { Answer } from 'src/app/interfaces/IAnswer';
+import { QuestionsService } from '../services/questions/questions.service';
+import { Question } from '../interfaces/IQuestion';
 
 @Component({
   selector: 'app-questions',
