@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "You’re really busy at work and a colleague is telling you their life story and personal woes. You:",
+    "correctOptionId": 2,
+    "options": [
+      {
+        "id": 1,
+        "questionId": 1,
+        "name": "Don’t dare to interrupt them"
+      },
+      {
+        "id": 2,
+        "questionId": 1,
+        "name": "Think it’s more important to give them some of your time; work can wait"
+      },
+      {
+        "id": 3,
+        "questionId": 1,
+        "name": "Listen, but with only with half an ear"
+      },
+      {
+        "id": 4,
+        "questionId": 1,
+        "name": "Interrupt and explain that you are really busy at the moment"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "You’ve been sitting in the doctor’s waiting room for more than 25 minutes. You:",
+    "correctOptionId": 3,
+    "options": [
+      {
+        "id": 1,
+        "questionId": 2,
+        "name": "Look at your watch every two minutes"
+      },
+      {
+        "id": 2,
+        "questionId": 2,
+        "name": "Bubble with inner anger, but keep quiet"
+      },
+      {
+        "id": 3,
+        "questionId": 2,
+        "name": "Explain to other equally impatient people in the room that the doctor is always running late"
+      },
+      {
+        "id": 4,
+        "questionId": 2,
+        "name": "Complain in a loud voice, while tapping your foot impatiently"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:",
+    "correctOptionId": 1,
+    "options": [
+      {
+        "id": 1,
+        "questionId": 3,
+        "name": "Don’t dare contradict them"
+      },
+      {
+        "id": 2,
+        "questionId": 3,
+        "name": "Think that they are obviously right"
+      },
+      {
+        "id": 3,
+        "questionId": 3,
+        "name": "Defend your own point of view, tooth and nail"
+      },
+      {
+        "id": 4,
+        "questionId": 3,
+        "name": "Continuously interrupt your colleague"
+      }
+    ]
+  }
+]

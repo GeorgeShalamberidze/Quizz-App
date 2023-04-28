@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+$button-color: #3468eb;
+$bg-color: rgb(66, 134, 244);
+$btn-font-size: 18px;
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome_container,
+.results_container {
+  width: 60vw;
+  border: 1px solid rgba(73, 71, 71, 0.596);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+// Adding custom styles to angular material components
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $bg-color;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  color: $bg-color;
+  background-color: $bg-color;
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #4e7cef;
+}
+
+.mat-progress-bar {
+  height: 16px !important;
+  border-radius: 3px;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: $button-color;
+}
+
+.mat-flat-button.mat-primary {
+  background-color: $button-color;
+  font-size: $btn-font-size;
+}
+
+.mat-stroked-button.mat-primary {
+  border-color: $button-color;
+  color: $button-color;
+  font-size: $btn-font-size;
+}

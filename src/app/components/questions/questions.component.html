@@ -1,0 +1,63 @@
+<mat-spinner *ngIf="!questions"></mat-spinner>
+<div class="questions_container" *ngIf="questions">
+  <div class="timer_container">Timer: {{ timerCount }}</div>
+  <div class="questions_wrapper">
+    <div class="question_count">
+      Question {{ questionIndex }} from {{ questions.length }}
+    </div>
+    <mat-progress-bar
+      [value]="getCurrentProgress()"
+      mode="determinate"
+    ></mat-progress-bar>
+    <div class="question">{{ questions[questionIndex - 1].title }}</div>
+    <div class="answers">
+      <div
+        *ngFor="let option of questions[questionIndex - 1]?.options"
+        class="answer"
+      >
+        <mat-radio-button
+          value="option.id"
+          (click)="
+            onAnswerSelected(
+              questionIndex,
+              option.id,
+              questions[questionIndex - 1].correctOptionId
+            )
+          "
+          [disabled]="answerindices[questionIndex] !== undefined"
+          [checked]="answerindices[questionIndex] === option.id"
+          >{{ option.name }}</mat-radio-button
+        >
+      </div>
+    </div>
+  </div>
+  <div class="buttons_container">
+    <div class="navigation_buttons">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="handlePrevClick()"
+        [disabled]="questionIndex === 1"
+      >
+        Prev
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="handleNextClick()"
+        [disabled]="questionIndex === questions.length"
+      >
+        Next
+      </button>
+      <button
+        *ngIf="answersArr.length === questions.length"
+        mat-flat-button
+        color="primary"
+        routerLink="/results"
+      >
+        Finish
+      </button>
+    </div>
+    <button mat-flat-button color="primary" routerLink="/welcome">Exit!</button>
+  </div>
+</div>
