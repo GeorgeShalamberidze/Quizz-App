@@ -4,14 +4,14 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent, pathMatch: 'full' },
+  { path: '', component: WelcomeComponent },
   { path: 'results', component: ResultsComponent },
   {
     path: 'questions',
     loadChildren: () =>
       import('./questions/questions.module').then((m) => m.QuestionsModule),
   },
-  // { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
