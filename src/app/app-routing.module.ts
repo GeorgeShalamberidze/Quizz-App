@@ -5,13 +5,14 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   {
     path: 'welcome',
     component: WelcomeComponent,
   },
   { path: 'questions', component: QuestionsComponent },
   { path: 'results', component: ResultsComponent },
+  { path: '**', redirectTo: '/welcome' },
 ];
 
 @NgModule({

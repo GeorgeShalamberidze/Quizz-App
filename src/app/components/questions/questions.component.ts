@@ -4,6 +4,8 @@ import { Question } from '../../interfaces/IQuestion';
 import { TimerService } from 'src/app/services/timer/timer.service';
 import { Router } from '@angular/router';
 import { AnswersService } from 'src/app/services/answers/answers.service';
+import { Subscription } from 'rxjs';
+import { Answer } from 'src/app/interfaces/IAnswer';
 
 @Component({
   selector: 'app-questions',
@@ -15,8 +17,10 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   questionIndex: number = 1;
   timerCount!: number;
   answersArr!: any;
-
   answerindices: number[] = [];
+
+  questionsSub!: Subscription;
+  answersSub!: Subscription;
 
   constructor(
     private questionsService: QuestionsService,
@@ -24,17 +28,20 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     private router: Router,
     private answersService: AnswersService
   ) {
-    this.questionsService.getQuestions().subscribe((data: Question[]) => {
-      this.questions = data;
-      console.log(data);
-    });
-    this.answersService.getAnswers().subscribe((data: any) => {
-      this.answersArr = data;
-    });
+    this.questionsSub = this.questionsService
+      .getQuestions()
+      .subscribe((data: Question[]) => {
+        this.questions = data;
+      });
+    this.answersSub = this.answersService
+      .getAnswers$()
+      .subscribe((data: Answer[]) => {
+        this.answersArr = data;
+      });
   }
 
   getCurrentProgress(): number {
-    return Math.round((this.questionIndex / 3) * 100);
+    return Math.round((this.answersArr.length / 3) * 100);
   }
 
   handlePrevClick() {
@@ -46,23 +53,30 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   }
 
   onAnswerSelected(
-    questionId: number,
-    answerId: number,
+    questionID: number,
+    answerID: number,
     correctAnswerID: number
   ) {
-    this.answerindices[this.questionIndex] = answerId;
-    this.answersService.addAnswer(questionId, answerId, correctAnswerID);
+    this.answerindices[this.questionIndex] = answerID;
+    this.answersService.addAnswer(questionID, answerID, correctAnswerID);
   }
 
   ngOnInit(): void {
     this.timerService.startTimer();
-    this.timerService.getTimer().subscribe((time: number) => {
+    this.timerService.getTimer$().subscribe((time: number) => {
       this.timerCount = time;
+
+      if (this.answersArr && this.questions) {
+        if (this.answersArr.length !== this.questions.length && time < 1) {
+          this.router.navigate(['/results']);
+        }
+      }
     });
   }
 
   ngOnDestroy(): void {
     this.timerService.resetTimer();
-    this.answersService.resetAnswers();
+    this.questionsSub.unsubscribe();
+    this.answersSub.unsubscribe();
   }
 }

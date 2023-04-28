@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnswersService } from 'src/app/services/answers/answers.service';
 
 @Component({
   selector: 'app-welcome',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-  constructor() {}
+  constructor(private answersService: AnswersService) {}
+
+  reset() {
+    this.answersService.resetAnswers();
+  }
 
   ngOnInit(): void {}
 }

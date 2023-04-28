@@ -1,6 +1,17 @@
 <div class="results_container">
-  <h2>You are an ...</h2>
-  <button mat-flat-button color="primary" routerLink="/questions">
+  <h3>Correct Answers: {{ correctAnswers }}</h3>
+  <h2 *ngIf="correctAnswers > 1">
+    You are an <span class="extrovert">Extrovert</span>
+  </h2>
+  <h2 *ngIf="correctAnswers <= 1">
+    You are an <span class="introvert">Introvert</span>
+  </h2>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="reset()"
+    routerLink="/questions"
+  >
     Repeat personality test
   </button>
 </div>

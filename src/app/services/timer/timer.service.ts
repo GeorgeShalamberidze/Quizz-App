@@ -12,22 +12,26 @@ import {
 })
 export class TimerService {
   private countdown: number = 60;
-  private timer$: BehaviorSubject<number> = new BehaviorSubject<number>(
+  private _timer$: BehaviorSubject<number> = new BehaviorSubject<number>(
     this.countdown
   );
   private timerSub!: Subscription;
 
-  getTimer(): Observable<number> {
-    return this.timer$.asObservable();
+  getTimer$(): Observable<number> {
+    return this._timer$.asObservable();
+  }
+
+  getTimer(): number {
+    return this._timer$.getValue();
   }
 
   startTimer() {
     if (!this.timerSub || this.timerSub.closed) {
       this.timerSub = interval(1000)
-        .pipe(takeWhile(() => this.timer$.getValue() > 0))
+        .pipe(takeWhile(() => this._timer$.getValue() > 0))
         .subscribe(() => {
-          let val = this.timer$.getValue();
-          this.timer$.next(val - 1);
+          let val = this._timer$.getValue();
+          this._timer$.next(val - 1);
         });
     }
   }
@@ -37,7 +41,7 @@ export class TimerService {
       this.timerSub.unsubscribe();
     }
     if (!this.timerSub || this.timerSub.closed) {
-      this.timer$.next(this.countdown);
+      this._timer$.next(this.countdown);
     }
   }
 

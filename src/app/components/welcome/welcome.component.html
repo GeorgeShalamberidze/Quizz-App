@@ -1,6 +1,11 @@
 <div class="welcome_container">
   <h2>Welcome to the Linton Questionnaire!</h2>
-  <button mat-flat-button color="primary" routerLink="/questions">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="reset()"
+    routerLink="/questions"
+  >
     Start personality test
   </button>
 </div>

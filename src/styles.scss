@@ -65,3 +65,7 @@ body {
   color: $button-color;
   font-size: $btn-font-size;
 }
+
+.mat-radio-label {
+  white-space: normal !important;
+}

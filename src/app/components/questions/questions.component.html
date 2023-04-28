@@ -26,7 +26,9 @@
           "
           [disabled]="answerindices[questionIndex] !== undefined"
           [checked]="answerindices[questionIndex] === option.id"
-          >{{ option.name }}</mat-radio-button
+          [ngClass]="{ disabled: answerindices[questionIndex] !== undefined }"
+        >
+          {{ option.name }}</mat-radio-button
         >
       </div>
     </div>
