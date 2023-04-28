@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./questions/questions.module').then((m) => m.QuestionsModule),
   },
-  { path: '**', redirectTo: '/' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
