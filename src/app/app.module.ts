@@ -7,23 +7,10 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ResultsComponent } from './components/results/results.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, WelcomeComponent, ResultsComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatRadioModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    FormsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, MatButtonModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
