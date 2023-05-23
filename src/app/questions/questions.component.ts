@@ -16,9 +16,8 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   questions!: Question[];
   questionIndex: number = 1;
   timerCount!: number;
-  answersArr!: any;
+  answersArr!: Answer[];
   answerindices: number[] = [];
-
   questionsSub!: Subscription;
   answersSub!: Subscription;
 
@@ -44,19 +43,22 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     return Math.round((this.answersArr.length / 3) * 100);
   }
 
-  handlePrevClick() {
+  handlePrevClick(): void {
     this.questionIndex = Math.max(this.questionIndex - 1, 1);
   }
 
-  handleNextClick() {
-    this.questionIndex = Math.min(this.questionIndex + 1, 3);
+  handleNextClick(): void {
+    this.questionIndex = Math.min(
+      this.questionIndex + 1,
+      this.questions.length
+    );
   }
 
   onAnswerSelected(
     questionID: number,
     answerID: number,
     correctAnswerID: number
-  ) {
+  ): void {
     this.answerindices[this.questionIndex] = answerID;
     this.answersService.addAnswer(questionID, answerID, correctAnswerID);
   }
@@ -65,13 +67,16 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     this.timerService.startTimer();
     this.timerService.getTimer$().subscribe((time: number) => {
       this.timerCount = time;
-
-      if (this.answersArr && this.questions) {
-        if (this.answersArr.length !== this.questions.length && time < 1) {
-          this.router.navigate(['/results']);
-        }
-      }
+      this.handleTimeOut(time);
     });
+  }
+
+  handleTimeOut(time: number): void {
+    if (this.answersArr && this.questions) {
+      if (this.answersArr.length !== this.questions.length && time < 1) {
+        this.router.navigate(['/results']);
+      }
+    }
   }
 
   ngOnDestroy(): void {

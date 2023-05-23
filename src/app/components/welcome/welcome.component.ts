@@ -9,7 +9,7 @@ import { AnswersService } from 'src/app/services/answers/answers.service';
 export class WelcomeComponent implements OnInit {
   constructor(private answersService: AnswersService) {}
 
-  reset() {
+  reset(): void {
     this.answersService.resetAnswers();
   }
 

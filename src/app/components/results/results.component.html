@@ -1,10 +1,15 @@
 <div class="results_container">
   <h3>Correct Answers: {{ correctAnswers }}</h3>
-  <h2 *ngIf="correctAnswers > 1">
-    You are an <span class="extrovert">Extrovert</span>
-  </h2>
-  <h2 *ngIf="correctAnswers <= 1">
-    You are an <span class="introvert">Introvert</span>
+  <h2>
+    You are an
+    <span
+      [ngClass]="{
+        introvert: correctAnswers <= 1,
+        extrovert: correctAnswers > 1
+      }"
+    >
+      {{ result }}
+    </span>
   </h2>
   <button
     mat-flat-button

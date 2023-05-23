@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Question } from 'src/app/interfaces/IQuestion';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Question } from 'src/app/interfaces/IQuestion';
 export class QuestionsService {
   constructor(private http: HttpClient) {}
 
-  getQuestions() {
+  getQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>('assets/questions.json');
   }
 }
