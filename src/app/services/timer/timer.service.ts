@@ -21,11 +21,7 @@ export class TimerService {
     return this._timer$.asObservable();
   }
 
-  getTimer(): number {
-    return this._timer$.getValue();
-  }
-
-  startTimer() {
+  startTimer(): void {
     if (!this.timerSub || this.timerSub.closed) {
       this.timerSub = interval(1000)
         .pipe(takeWhile(() => this._timer$.getValue() > 0))
